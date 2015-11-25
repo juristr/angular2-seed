@@ -13,6 +13,7 @@ loadTasks();
 gulp.task('clean',       task('clean', 'all'));
 gulp.task('clean.dist',  task('clean', 'dist'));
 gulp.task('clean.test',  task('clean', 'test'));
+gulp.task('clean.tmp',   task('clean', 'tmp'));
 
 // --------------
 // Postinstall.
@@ -34,9 +35,27 @@ gulp.task('build.dev', done =>
               'build.index.dev',
               done));
 
-gulp.task('build.dev.watch', done =>
-  runSequence('build.dev',
-              'watch.dev',
+// --------------
+// Build prod.
+gulp.task('build.prod', done =>
+  runSequence('clean.tmp',
+              'clean.dist',
+              'tslint',
+              'build.deps',
+              'build.sass.dev',
+              'build.assets',
+              'build.images.dev',
+              'build.html_css.prod',
+              'build.js.prod',
+              'build.bundles',
+              'build.index.dev',
+              done));
+
+// --------------
+// Watch.
+gulp.task(`build.${ENV}.watch`, done =>
+  runSequence(`build.${ENV}`,
+              'watch.app',
               done));
 
 gulp.task('build.test.watch', done =>
@@ -62,7 +81,7 @@ gulp.task('serve', done =>
               done));
 
 // --------------
-// Docs
+// Docs.
 gulp.task('docs', done =>
   runSequence('build.docs',
               'serve.docs',

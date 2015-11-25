@@ -37,4 +37,5 @@ dev
 docs
 lib
 test
+tmp
 tools/typings/tsd

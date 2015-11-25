@@ -6,23 +6,33 @@
   "scripts": {
     "build.dev": "gulp build.dev",
     "build.dev.watch": "gulp build.dev.watch",
+    "build.prod": "gulp build.prod --env prod",
+    "build.prod.watch": "gulp build.prod.watch --env prod",
     "build.test": "gulp build.test",
     "build.test.watch": "gulp build.test.watch",
-    "docs": "npm run gulp -- build.docs && npm run gulp -- serve.docs",
+    "docs": "gulp build.docs && gulp serve.docs",
     "gulp": "gulp",
     "karma": "karma",
     "karma.start": "karma start",
     "lint": "gulp tslint",
     "postinstall": "tsd reinstall --clean && tsd link && tsd rebundle && gulp check.versions && gulp postinstall",
     "reinstall": "rimraf node_modules && npm cache clean && npm install",
-    "start": "gulp serve --env dev",
+    "start": "gulp serve",
     "serve.dev": "gulp serve --env dev",
+    "serve.prod": "gulp serve --env prod",
     "tasks.list": "gulp --tasks-simple",
     "test": "gulp test",
     "tsd": "tsd"
   },
   "author": "Minko Gechev <mgechev>",
   "license": "MIT",
+  "dependencies": {
+    "angular2": "2.0.0-alpha.46",
+    "bootstrap": "^3.3.5",
+    "es6-module-loader": "^0.17.8",
+    "es6-shim": "^0.33.6",
+    "systemjs": "^0.19.4"
+  },
   "devDependencies": {
     "@reactivex/rxjs": "^5.0.0-alpha.6",
     "async": "^1.4.2",
@@ -56,6 +66,7 @@
     "karma-jasmine": "~0.3.6",
     "karma-mocha-reporter": "^1.1.1",
     "karma-phantomjs2-launcher": "^0.3.2",
+    "merge-stream": "^1.0.0",
     "open": "0.0.5",
     "reflect-metadata": "^0.1.2",
     "rimraf": "^2.4.3",
@@ -74,12 +85,5 @@
     "typescript-register": "^1.1.0",
     "yargs": "^3.25.0",
     "zone.js": "^0.5.8"
-  },
-  "dependencies": {
-    "angular2": "2.0.0-alpha.46",
-    "bootstrap": "^3.3.5",
-    "es6-module-loader": "^0.17.8",
-    "es6-shim": "^0.33.6",
-    "systemjs": "^0.19.4"
   }
 }

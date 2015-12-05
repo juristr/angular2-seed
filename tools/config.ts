@@ -32,22 +32,29 @@ export const VERSION              = appVersion();
 export const VERSION_NPM          = '3.0.0';
 export const VERSION_NODE         = '4.0.0';
 
-
+// Declare NPM dependencies (Note that globs should not be injected).
 export const DEV_DEPENDENCIES = [
-  { src: 'systemjs/dist/system-polyfills.js', dest: LIB_DEST },
+  { src: 'systemjs/dist/system-polyfills.js' },
 
-  { src: 'zone.js/dist/zone.min.js',    dest: LIB_DEST, inject: 'shims' },
-  { src: 'es6-shim/es6-shim.min.js',    dest: LIB_DEST, inject: 'shims' },
-  { src: 'reflect-metadata/Reflect.js', dest: LIB_DEST, inject: 'shims' },
-  { src: 'systemjs/dist/system.src.js',     dest: LIB_DEST, inject: 'shims' },
+  { src: 'es6-shim/es6-shim.min.js', inject: 'shims' },
+  { src: 'reflect-metadata/Reflect.js', inject: 'shims' },
+  { src: 'systemjs/dist/system.src.js', inject: 'shims' },
 
-  { src: 'bootstrap/dist/css/bootstrap.css', dest: CSS_DEST, inject: true },
+  // Faster dev page load
+  { src: 'angular2/bundles/angular2.dev.js', inject: 'libs' },
+  { src: 'angular2/bundles/router.dev.js', inject: 'libs' },
+  { src: 'angular2/bundles/http.dev.js', inject: 'libs' },
 
-  { src: 'bootstrap/dist/fonts/glyphicons-halflings-regular.eot',   dest: FONTS_DEST},
-  { src: 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg',   dest: FONTS_DEST},
-  { src: 'bootstrap/dist/fonts/glyphicons-halflings-regular.ttf',   dest: FONTS_DEST},
-  { src: 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff',  dest: FONTS_DEST},
-  { src: 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', dest: FONTS_DEST}
+  { src: 'bootstrap/dist/css/bootstrap.css', inject: true }
+];
+
+DEV_DEPENDENCIES
+  .filter(d => !/\*/.test(d.src)) // Skip globs
+  .forEach(d => d.src = require.resolve(d.src));
+
+// Declare local files that needs to be injected
+export const APP_ASSETS = [
+  { src: `${ASSETS_DEST}/main.css`, inject: true }
 ];
 
 const SYSTEM_CONFIG_DEV = {

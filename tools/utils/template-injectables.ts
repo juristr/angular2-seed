@@ -20,6 +20,6 @@ export function transformPath(plugins) {
   return function (filepath) {
     filepath = ENV === 'prod' ? filepath.replace(`/${APP_DEST}`, '') : filepath;
     arguments[0] = join(APP_BASE, filepath);
-    return plugins.inject.transform.apply(plugins.inject.transform, arguments);
+    return slash(plugins.inject.transform.apply(plugins.inject.transform, arguments));
   };
 }

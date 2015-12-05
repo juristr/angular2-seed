@@ -27,7 +27,6 @@ gulp.task('postinstall', done =>
 gulp.task('build.dev', done =>
   runSequence('clean.dist',
               'tslint',
-              'build.deps',
               'build.sass.dev',
               'build.assets',
               'build.images.dev',

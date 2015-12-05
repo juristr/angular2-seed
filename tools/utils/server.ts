@@ -28,11 +28,6 @@ export function serveSPA() {
     express.static(join(process.cwd(), (ENV === 'prod' ? APP_DEST : '')))
   );
 
-  // // Used when (re)loading the app from a deep link.
-  // server.all(APP_BASE + '*', (req, res) =>
-  //   res.sendFile(resolve(process.cwd(), APP_DEST, 'index.html'))
-  // );
-
   server.listen(PORT, () =>
     openResource('http://localhost:' + PORT + APP_ROOT)
   );

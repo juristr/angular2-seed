@@ -8,6 +8,7 @@ import {
 import {HomeCmp} from '../home/home';
 import {AboutCmp} from '../about/about';
 import {NameList} from '../../services/name_list';
+import {DateTime} from './dateTime';
 
 @Component({
   selector: 'app',
@@ -15,7 +16,7 @@ import {NameList} from '../../services/name_list';
   templateUrl: './components/app/app.html',
   styleUrls: ['./components/app/app.css'],
   encapsulation: ViewEncapsulation.None,
-  directives: [ROUTER_DIRECTIVES]
+  directives: [ROUTER_DIRECTIVES, DateTime]
 })
 @RouteConfig([
   { path: '/', component: HomeCmp, as: 'Home' },

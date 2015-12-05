@@ -41,6 +41,7 @@ export const DEV_DEPENDENCIES = [
   { src: 'angular2/bundles/angular2.dev.js', inject: 'libs' },
   { src: 'angular2/bundles/router.dev.js', inject: 'libs' },
   { src: 'angular2/bundles/http.dev.js', inject: 'libs' },
+  // { src: 'moment/moment.js', inject: 'libs' },
 
   { src: 'bootstrap/dist/css/bootstrap.css', inject: true }
 ];
